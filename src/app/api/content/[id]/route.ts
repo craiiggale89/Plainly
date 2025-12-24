@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { headers } from 'next/headers'
 import prisma from '@/lib/prisma'
 
 export const dynamic = 'force-dynamic'
@@ -9,6 +10,7 @@ interface Props {
 
 // GET single content page
 export async function GET(request: Request, { params }: Props) {
+    await headers()
     try {
         const { id } = await params
         const page = await prisma.contentPage.findUnique({
@@ -28,6 +30,7 @@ export async function GET(request: Request, { params }: Props) {
 
 // PUT update content page
 export async function PUT(request: Request, { params }: Props) {
+    await headers()
     try {
         const { id } = await params
         const data = await request.json()
@@ -60,6 +63,7 @@ export async function PUT(request: Request, { params }: Props) {
 
 // DELETE content page
 export async function DELETE(request: Request, { params }: Props) {
+    await headers()
     try {
         const { id } = await params
         await prisma.contentPage.delete({

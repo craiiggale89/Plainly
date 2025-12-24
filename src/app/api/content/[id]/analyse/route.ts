@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { headers } from 'next/headers'
 import OpenAI from 'openai'
 import prisma from '@/lib/prisma'
 
@@ -42,6 +43,7 @@ Return your response as valid JSON with this exact structure:
 }`
 
 export async function POST(request: Request, { params }: Props) {
+    await headers()
     try {
         const { id } = await params
 

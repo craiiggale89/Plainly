@@ -1,10 +1,12 @@
 import { NextResponse } from 'next/server'
+import { headers } from 'next/headers'
 import prisma from '@/lib/prisma'
 
 export const dynamic = 'force-dynamic'
 
 // GET all content pages
 export async function GET() {
+    await headers()
     try {
         const pages = await prisma.contentPage.findMany({
             orderBy: { lastReviewed: 'asc' }
@@ -18,6 +20,7 @@ export async function GET() {
 
 // POST create new content page
 export async function POST(request: Request) {
+    await headers()
     try {
         const data = await request.json()
 

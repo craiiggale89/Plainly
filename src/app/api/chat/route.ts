@@ -1,18 +1,9 @@
 import { NextResponse } from 'next/server'
+import { headers } from 'next/headers'
 import OpenAI from 'openai'
 import prisma from '@/lib/prisma'
 
 export const dynamic = 'force-dynamic'
-
-// Lazy-load OpenAI client to avoid build-time errors
-let openai: OpenAI | null = null
-
-function getOpenAI() {
-    if (!openai) {
-        openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
-    }
-    return openai
-}
 
 const SYSTEM_PROMPT = `You are the AI assistant for Plainly AI, a UK-based company that helps small businesses use AI practically and confidently.
 
@@ -50,12 +41,18 @@ interface ChatMessage {
 }
 
 export async function POST(request: Request) {
+    // Explicitly call headers() to ensure Next.js treats this as dynamic
+    await headers()
+
     try {
         const { message, conversationId, history } = await request.json()
 
         if (!message || typeof message !== 'string') {
             return NextResponse.json({ error: 'Message is required' }, { status: 400 })
         }
+
+        // Initialize OpenAI inside the handler
+        const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
 
         // Limit message length
         if (message.length > 1000) {
@@ -83,7 +80,7 @@ export async function POST(request: Request) {
         ]
 
         // Call OpenAI
-        const completion = await getOpenAI().chat.completions.create({
+        const completion = await openai.chat.completions.create({
             model: 'gpt-4o-mini',
             messages,
             max_tokens: 300,
@@ -93,14 +90,14 @@ export async function POST(request: Request) {
         const assistantMessage = completion.choices[0]?.message?.content ||
             "I'm having trouble responding right now. Please try again or book a discovery call."
 
-        // Store messages in Prisma (non-blocking)
-        storeMessages(conversationId, message, assistantMessage).catch(console.error)
+        // Store messages in Prisma
+        await storeMessages(conversationId, message, assistantMessage)
 
         return NextResponse.json({ message: assistantMessage })
-    } catch (error) {
+    } catch (error: any) {
         console.error('Chat API error:', error)
         return NextResponse.json(
-            { error: 'Failed to process message' },
+            { error: 'Failed to process message', details: error.message },
             { status: 500 }
         )
     }

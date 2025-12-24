@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { headers } from 'next/headers'
 import prisma from '@/lib/prisma'
 
 export const dynamic = 'force-dynamic'
@@ -45,6 +46,7 @@ function calculateLeadScore(data: LeadData): number {
 }
 
 export async function POST(request: Request) {
+    await headers()
     try {
         const data: LeadData = await request.json()
 
