@@ -1,0 +1,103 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Lead {
+  id                    String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email                 String
+  firstName             String?     @map("first_name")
+  lastName              String?     @map("last_name")
+  companyName           String?     @map("company_name")
+  phone                 String?
+  teamSize              String?     @map("team_size")
+  serviceInterest       String?     @map("service_interest")
+  mainChallenge         String?     @map("main_challenge")
+  source                String
+  leadScore             Int?        @default(0) @map("lead_score")
+  status                String?     @default("new")
+  chatbotConversationId String?     @map("chatbot_conversation_id") @db.Uuid
+  chatbotSummary        String?     @map("chatbot_summary")
+  readinessScore        Int?        @map("readiness_score")
+  readinessAnswers      Json?       @map("readiness_answers")
+  createdAt             DateTime    @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt             DateTime    @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+  notes                 LeadNote[]
+  events                LeadEvent[]
+
+  @@index([status])
+  @@index([source])
+  @@index([createdAt(sort: Desc)])
+  @@index([email])
+  @@map("leads")
+}
+
+model LeadNote {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  leadId    String   @map("lead_id") @db.Uuid
+  note      String
+  createdBy String?  @map("created_by") @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  @@index([leadId])
+  @@map("lead_notes")
+}
+
+model LeadEvent {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  leadId    String   @map("lead_id") @db.Uuid
+  eventType String   @map("event_type")
+  eventData Json?    @map("event_data")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  @@index([leadId])
+  @@map("lead_events")
+}
+
+model ChatbotMessage {
+  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  conversationId String   @map("conversation_id") @db.Uuid
+  role           String
+  content        String
+  createdAt      DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@index([conversationId])
+  @@map("chatbot_messages")
+}
+
+model ContentPage {
+  id                      String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title                   String
+  url                     String    @unique
+  primaryTopic            String?   @map("primary_topic")
+  locationFocus           String?   @default("none") @map("location_focus")
+  status                  String?   @default("draft")
+  lastReviewed            DateTime? @map("last_reviewed") @db.Timestamptz(6)
+  nextReviewDate          DateTime? @map("next_review_date") @db.Date
+  reviewNotes             String?   @map("review_notes")
+  pageViews               Int?      @map("page_views")
+  ctaClicks               Int?      @map("cta_clicks")
+  aiSummary               String?   @map("ai_summary")
+  aiGeneratedAt           DateTime? @map("ai_generated_at") @db.Timestamptz(6)
+  suggestedLocalPhrases   Json?     @map("suggested_local_phrases")
+  suggestedKeywords       Json?     @map("suggested_keywords")
+  hasBirminghamMention    Boolean   @default(false) @map("has_birmingham_mention")
+  hasWestMidlandsMention  Boolean   @default(false) @map("has_west_midlands_mention")
+  suggestedReviewDate     DateTime? @map("suggested_review_date") @db.Date
+  tags                    Json?
+  notes                   String?
+  createdAt               DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt               DateTime  @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@index([status])
+  @@index([locationFocus])
+  @@index([lastReviewed])
+  @@map("content_pages")
+}
