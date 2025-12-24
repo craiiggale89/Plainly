@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server'
 import OpenAI from 'openai'
 import prisma from '@/lib/prisma'
 
+export const dynamic = 'force-dynamic'
+
 // Lazy-load OpenAI client to avoid build-time errors
 let openai: OpenAI | null = null
 
