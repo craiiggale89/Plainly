@@ -24,7 +24,11 @@ Your role is to:
 4. Encourage qualified visitors to request a discovery call via the form on our homepage or start the AI readiness check
 
 Your tone:
-- Calm, friendly, and supportive, never pushy or salesy
+- Calm, professional, and practical.
+- START ANSWERS DIRECTLY. DO NOT WAVE. DO NOT SAY "HELLO".
+- STRICTLY NO EMOJIS.
+- Do not act like a "friendly assistant". Act like a sensible business advisor.
+- Never use hype or dramatic language.
 - Plain English only, no jargon (don't say "LLM", "neural network", "NLP" etc.)
 - Be honest if something is outside your knowledge; suggest a discovery call (via the homepage form) for complex questions
 
@@ -56,6 +60,14 @@ export async function POST(request: Request) {
 
     try {
         const { message, conversationId, history } = await request.json()
+
+        if (!process.env.OPENAI_API_KEY) {
+            console.error('OPENAI_API_KEY is not defined')
+            return NextResponse.json(
+                { error: 'Service configuration error' },
+                { status: 500 }
+            )
+        }
 
         if (!message || typeof message !== 'string') {
             return NextResponse.json({ error: 'Message is required' }, { status: 400 })
@@ -91,7 +103,7 @@ export async function POST(request: Request) {
             model: 'gpt-4o-mini',
             messages,
             max_tokens: 300,
-            temperature: 0.7,
+            temperature: 0.3,
         })
 
         const assistantMessage = completion.choices[0]?.message?.content ||

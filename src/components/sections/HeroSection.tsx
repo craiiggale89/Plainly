@@ -8,11 +8,11 @@ export default function HeroSection() {
       <div className="container">
         <div className="hero-content">
           <h1 className="hero-title">
-            Practical AI for your business. Without the overwhelm.
+            Practical AI for your business. Plain and simple.
           </h1>
 
           <p className="hero-subtitle">
-            Plainly AI helps small businesses in the UK use AI tools confidently, from team training to custom automations that actually work.
+            Plainly AI helps small businesses in the UK use AI tools confidently, from team training to custom automations that fit your workflow.
           </p>
 
           <div className="hero-ctas">
@@ -23,6 +23,10 @@ export default function HeroSection() {
               Book a discovery call
             </Link>
           </div>
+
+          <p className="hero-location">
+            Based in Birmingham, supporting businesses across the UK
+          </p>
         </div>
       </div>
 
@@ -61,6 +65,13 @@ export default function HeroSection() {
           gap: 16px;
           justify-content: center;
           flex-wrap: wrap;
+        }
+
+        .hero-location {
+          margin-top: 24px;
+          font-size: 0.9375rem;
+          color: var(--color-text-muted);
+          opacity: 0.8;
         }
 
         @media (max-width: 768px) {

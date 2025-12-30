@@ -20,7 +20,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-right">
-            <p className="footer-location">Birmingham, UK</p>
+            <p className="footer-location">Plainly AI | Birmingham, UK</p>
             <p className="footer-copyright">
               © {currentYear} Plainly AI
             </p>

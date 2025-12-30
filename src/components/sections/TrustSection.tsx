@@ -1,7 +1,8 @@
 'use client'
 
 const trustPoints = [
-  'Based in Birmingham, working with UK small businesses',
+  'Based in Birmingham, supporting businesses across the UK',
+  'You’ve already got the tools. We just help you get the value',
   'No lock-in contracts. Pay for what you need',
   'Clear, upfront pricing before any work starts',
   'We teach your team to be independent, not dependent',

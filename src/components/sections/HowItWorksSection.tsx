@@ -16,7 +16,7 @@ const steps = [
   {
     number: '3',
     title: 'Deliver',
-    description: 'If it works, we scale it. Full rollout with documentation, training, and handover.',
+    description: 'We build the solution alongside your team, training them as we go—so they understand how it works and can run it without us.',
   },
   {
     number: '4',
@@ -30,6 +30,7 @@ export default function HowItWorksSection() {
     <section className="how-it-works section section-alt">
       <div className="container">
         <h2 className="section-title">Four simple steps</h2>
+        <p className="section-subtitle">We don&apos;t just build it and leave. We build it with you, so you stay in control.</p>
 
         <div className="steps-grid">
           {steps.map((step, index) => (
@@ -51,7 +52,17 @@ export default function HowItWorksSection() {
       <style jsx>{`
         .section-title {
           text-align: center;
+          margin-bottom: 24px;
+        }
+
+        .section-subtitle {
+          text-align: center;
           margin-bottom: 48px;
+          color: var(--color-text-muted);
+          font-size: 1.125rem;
+          max-width: 600px;
+          margin-left: auto;
+          margin-right: auto;
         }
 
         .steps-grid {

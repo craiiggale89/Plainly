@@ -108,7 +108,7 @@ export default function BookingFormSection() {
                                 <span className="icon">📂</span>
                                 <div>
                                     <strong>Business focused</strong>
-                                    <span>We talk results, not technical jargon</span>
+                                    <span>We talk practical results, not technical jargon</span>
                                 </div>
                             </li>
                             <li>

@@ -4,6 +4,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import HeroSection from '@/components/sections/HeroSection'
 import ValueProposition from '@/components/sections/ValueProposition'
+import OffersSection from '@/components/sections/OffersSection'
 import ServicesSection from '@/components/sections/ServicesSection'
 import UseCasesSection from '@/components/sections/UseCasesSection'
 import HowItWorksSection from '@/components/sections/HowItWorksSection'
@@ -21,6 +22,7 @@ export default function HomePage() {
       <main>
         <HeroSection />
         <ValueProposition />
+        <OffersSection />
         <ServicesSection />
         <UseCasesSection />
         <HowItWorksSection />

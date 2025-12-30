@@ -6,6 +6,9 @@ export default function ServicesSection() {
   return (
     <section className="services section section-alt">
       <div className="container">
+        <div className="section-intro">
+          <p className="intro-text">We help you build your own capabilities, not a dependency on ours.</p>
+        </div>
         <div className="services-grid">
           {/* Service A: AI Readiness & Team Upskilling */}
           <div className="service-card">
@@ -20,7 +23,7 @@ export default function ServicesSection() {
             </h3>
 
             <p className="service-description">
-              Most AI courses teach theory. We teach your team how to use the tools they already have access to: ChatGPT, Microsoft Copilot, and Google Workspace AI, in ways that actually help.
+              We don&apos;t just teach theory. We teach your team how to use the tools they already have access to: ChatGPT, Microsoft Copilot, and Google Workspace AI, in ways that actually help.
             </p>
 
             <ul className="service-features">
@@ -40,7 +43,7 @@ export default function ServicesSection() {
             </p>
 
             <Link href="/readiness-check" className="btn btn-ghost">
-              Check if your team is ready →
+              Take the readiness check →
             </Link>
           </div>
 
@@ -53,22 +56,22 @@ export default function ServicesSection() {
             </div>
 
             <h3 className="service-title">
-              Custom tools that fit how you actually work
+              Custom tools that clear the friction from your workflows
             </h3>
 
             <p className="service-description">
-              When off-the-shelf software doesn&apos;t quite fit, we build what you need: practical internal tools and automations that save time and reduce errors.
+              When standard software forces you into awkward workarounds, we build the simpler path. We create practical internal tools that handle your specific repetitive tasks—giving your team the clarity and headspace to focus on the work that actually matters.
             </p>
 
             <ul className="service-features">
               <li>
-                <strong>Tailored to you:</strong> Built around your workflows, not the other way round
+                <strong>Fits your reality:</strong> Designed around the way you work, eliminating the manual &quot;glue work&quot; and data entry that frustrate your team
               </li>
               <li>
-                <strong>Full handover:</strong> Your team can use and manage the tool independently
+                <strong>No locked boxes:</strong> We hand over clear, documented systems that you can run and manage yourselves, without creating a new dependency
               </li>
               <li>
-                <strong>Ongoing support available:</strong> We&apos;re here if anything needs adjusting
+                <strong>Calm reliability:</strong> We build robust tools that don&apos;t need constant fixing, while remaining available if your business needs change
               </li>
             </ul>
 
@@ -84,6 +87,19 @@ export default function ServicesSection() {
       </div>
 
       <style jsx>{`
+        .section-intro {
+          text-align: center;
+          margin-bottom: 40px;
+          max-width: 800px;
+          margin: 0 auto 40px;
+        }
+
+        .intro-text {
+          font-size: 1.25rem;
+          color: var(--color-text-muted);
+          font-weight: 500;
+        }
+
         .services-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);

@@ -35,6 +35,10 @@ const faqs = [
     question: 'Is my data safe?',
     answer: "We follow UK data protection requirements and only access what's needed for the project. We're happy to sign NDAs or data processing agreements.",
   },
+  {
+    question: 'Is your team already using AI quietly?',
+    answer: "That's actually a great sign. It means your team is proactive and looking for better ways to work. We don't believe in blocking that initiative. Instead, we help you replace \"shadow\" usage with clear, agreed ways of working. By setting simple boundaries and sharing what works, we turn private hacks into approved team-wide skills—so everyone stays safe without slowing down.",
+  },
 ]
 
 function FAQItem({ question, answer }: { question: string; answer: string }) {

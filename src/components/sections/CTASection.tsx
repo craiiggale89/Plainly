@@ -7,11 +7,17 @@ export default function CTASection() {
     <section className="cta-section section">
       <div className="container">
         <div className="cta-content">
-          <h2 className="cta-title">Ready to move forward with AI?</h2>
+          <h2 className="cta-title">Get a clear, practical view of your AI readiness</h2>
 
           <p className="cta-text">
-            Take five minutes to complete our free AI readiness check. You&apos;ll get a clear picture of where you stand, and practical next steps, whether you work with us or not.
+            Answer a few simple questions about how your team works today. In about 4 minutes, you&apos;ll receive a personalized breakdown of where you stand and what to focus on next.
           </p>
+
+          <ul className="cta-bullets">
+            <li>Your AI Readiness Score</li>
+            <li>Gap Analysis</li>
+            <li>Practical Next Steps</li>
+          </ul>
 
           <div className="cta-buttons">
             <Link href="/readiness-check" className="btn btn-primary btn-lg">
@@ -20,11 +26,7 @@ export default function CTASection() {
           </div>
 
           <p className="cta-secondary">
-            Or{' '}
-            <Link href="#book-call" className="cta-link">
-              book a discovery call
-            </Link>
-            {' '}if you&apos;d prefer to talk first.
+            It&apos;s completely free, and gives you a clear roadmap whether you choose to work with us or not.
           </p>
 
           <p className="cta-location">
@@ -53,6 +55,30 @@ export default function CTASection() {
           color: var(--color-text-muted);
           line-height: 1.7;
           margin-bottom: 32px;
+        }
+
+        .cta-bullets {
+          list-style: none;
+          padding: 0;
+          margin: 0 0 32px 0;
+          display: flex;
+          justify-content: center;
+          gap: 24px;
+          flex-wrap: wrap;
+        }
+
+        .cta-bullets li {
+          font-weight: 500;
+          color: var(--color-text);
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .cta-bullets li::before {
+          content: '✓';
+          color: var(--color-accent);
+          font-weight: bold;
         }
 
         .cta-buttons {
