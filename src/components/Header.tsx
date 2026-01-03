@@ -12,7 +12,6 @@ export default function Header() {
         <div className="header-inner">
           <Link href="/" className="logo">
             <span className="logo-text">Enablr</span>
-            <span className="logo-accent">AI</span>
           </Link>
 
           <nav className="nav-desktop">

@@ -12,7 +12,6 @@ export default function Footer() {
           <div className="footer-left">
             <Link href="/" className="footer-logo">
               <span className="logo-text">Enablr</span>
-              <span className="logo-accent">AI</span>
             </Link>
             <p className="footer-tagline">
               Practical AI for small businesses
