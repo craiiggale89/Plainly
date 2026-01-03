@@ -11,7 +11,8 @@ export default function Footer() {
         <div className="footer-inner">
           <div className="footer-left">
             <Link href="/" className="footer-logo">
-              <span className="logo-text">Enablr</span>
+              <span className="logo-text">Enab</span>
+              <span className="logo-suffix">lr</span>
             </Link>
             <p className="footer-tagline">
               Practical AI for small businesses
@@ -64,8 +65,21 @@ export default function Footer() {
           color: white;
         }
 
-        .logo-accent {
-          color: var(--color-accent-light);
+        .logo-suffix {
+          color: white;
+          position: relative;
+          display: inline-block;
+        }
+
+        .logo-suffix::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: 2px;
+          width: 100%;
+          height: 3px;
+          background-color: var(--color-accent-light);
+          border-radius: 2px;
         }
 
         .footer-tagline {

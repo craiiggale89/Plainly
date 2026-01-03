@@ -11,7 +11,8 @@ export default function Header() {
       <div className="container">
         <div className="header-inner">
           <Link href="/" className="logo">
-            <span className="logo-text">Enablr</span>
+            <span className="logo-text">Enab</span>
+            <span className="logo-suffix">lr</span>
           </Link>
 
           <nav className="nav-desktop">
@@ -95,8 +96,22 @@ export default function Header() {
           color: var(--color-primary);
         }
 
-        .logo-accent {
-          color: var(--color-accent);
+        .logo-suffix {
+          color: var(--color-primary);
+          position: relative;
+          display: inline-block;
+        }
+
+        .logo-suffix::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: 3px;
+          width: 100%;
+          height: 4px;
+          background-color: var(--color-accent);
+          border-radius: 2px;
+          opacity: 0.9;
         }
 
         .nav-desktop {
