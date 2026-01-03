@@ -40,7 +40,7 @@ export default function LoginForm() {
         <div className="login-page">
             <div className="login-card">
                 <div className="login-header">
-                    <h1>Plainly AI</h1>
+                    <h1>Enablr</h1>
                     <p>Admin Dashboard</p>
                 </div>
 

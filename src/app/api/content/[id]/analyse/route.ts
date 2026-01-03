@@ -19,7 +19,7 @@ interface Props {
     params: Promise<{ id: string }>
 }
 
-const ANALYSIS_PROMPT = `You are an SEO and content analyst helping a UK-based AI consultancy (Plainly AI, based in Birmingham, West Midlands) understand their web pages.
+const ANALYSIS_PROMPT = `You are an SEO and content analyst helping a UK-based AI consultancy (Enablr, based in Birmingham, West Midlands) understand their web pages.
 
 Analyse the following page content and provide:
 

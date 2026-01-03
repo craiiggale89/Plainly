@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="footer-inner">
           <div className="footer-left">
             <Link href="/" className="footer-logo">
-              <span className="logo-text">Plainly</span>
+              <span className="logo-text">Enablr</span>
               <span className="logo-accent">AI</span>
             </Link>
             <p className="footer-tagline">
@@ -20,9 +20,9 @@ export default function Footer() {
           </div>
 
           <div className="footer-right">
-            <p className="footer-location">Plainly AI | Birmingham, UK</p>
+            <p className="footer-location">Enablr | Birmingham, UK</p>
             <p className="footer-copyright">
-              © {currentYear} Plainly AI
+              © {currentYear} Enablr
             </p>
           </div>
         </div>

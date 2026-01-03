@@ -96,7 +96,7 @@ export default function ChatWidget() {
         <div className="chat-window">
           <div className="chat-header">
             <div className="chat-header-info">
-              <span className="chat-header-title">Plainly AI</span>
+              <span className="chat-header-title">Enablr</span>
               <span className="chat-header-status">Practical AI guidance</span>
             </div>
           </div>

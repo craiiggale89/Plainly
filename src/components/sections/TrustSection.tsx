@@ -14,7 +14,7 @@ export default function TrustSection() {
     <section className="trust section">
       <div className="container">
         <div className="trust-content">
-          <h2 className="section-title">Why businesses trust Plainly AI</h2>
+          <h2 className="section-title">Why businesses trust Enablr</h2>
 
           <ul className="trust-list">
             {trustPoints.map((point, index) => (

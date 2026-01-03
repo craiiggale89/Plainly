@@ -12,7 +12,7 @@ export default function HeroSection() {
           </h1>
 
           <p className="hero-subtitle">
-            Plainly AI helps small businesses in the UK use AI tools confidently, from team training to custom automations that fit your workflow.
+            Enablr helps small businesses in the UK use AI tools confidently, from team training to custom automations that fit your workflow.
           </p>
 
           <div className="hero-ctas">

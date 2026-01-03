@@ -142,7 +142,7 @@ export default function LeadDetail({
       <header className="admin-header">
         <div className="header-left">
           <Link href="/admin" className="back-link">← Leads</Link>
-          <h1>Plainly AI</h1>
+          <h1>Enablr</h1>
           <span className="header-badge">Admin</span>
         </div>
         <button onClick={handleLogout} className="btn btn-ghost">

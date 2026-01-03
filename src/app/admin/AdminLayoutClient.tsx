@@ -5,56 +5,56 @@ import { usePathname, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 
 interface AdminLayoutClientProps {
-    children: React.ReactNode
+  children: React.ReactNode
 }
 
 export default function AdminLayoutClient({ children }: AdminLayoutClientProps) {
-    const pathname = usePathname()
-    const router = useRouter()
-    const supabase = createClient()
+  const pathname = usePathname()
+  const router = useRouter()
+  const supabase = createClient()
 
-    const handleLogout = async () => {
-        await supabase.auth.signOut()
-        router.push('/admin/login')
-        router.refresh()
+  const handleLogout = async () => {
+    await supabase.auth.signOut()
+    router.push('/admin/login')
+    router.refresh()
+  }
+
+  const isActive = (path: string) => {
+    if (path === '/admin') {
+      return pathname === '/admin' || pathname?.startsWith('/admin/leads')
     }
+    return pathname?.startsWith(path)
+  }
 
-    const isActive = (path: string) => {
-        if (path === '/admin') {
-            return pathname === '/admin' || pathname?.startsWith('/admin/leads')
-        }
-        return pathname?.startsWith(path)
-    }
+  return (
+    <div className="admin-layout">
+      <header className="admin-header">
+        <div className="header-left">
+          <h1>Enablr</h1>
+          <span className="header-badge">Admin</span>
+        </div>
+        <nav className="admin-nav">
+          <Link
+            href="/admin"
+            className={`nav-link ${isActive('/admin') && !pathname?.startsWith('/admin/content') ? 'active' : ''}`}
+          >
+            Leads
+          </Link>
+          <Link
+            href="/admin/content"
+            className={`nav-link ${isActive('/admin/content') ? 'active' : ''}`}
+          >
+            Content & Coverage
+          </Link>
+        </nav>
+        <button onClick={handleLogout} className="btn btn-ghost">
+          Sign out
+        </button>
+      </header>
 
-    return (
-        <div className="admin-layout">
-            <header className="admin-header">
-                <div className="header-left">
-                    <h1>Plainly AI</h1>
-                    <span className="header-badge">Admin</span>
-                </div>
-                <nav className="admin-nav">
-                    <Link
-                        href="/admin"
-                        className={`nav-link ${isActive('/admin') && !pathname?.startsWith('/admin/content') ? 'active' : ''}`}
-                    >
-                        Leads
-                    </Link>
-                    <Link
-                        href="/admin/content"
-                        className={`nav-link ${isActive('/admin/content') ? 'active' : ''}`}
-                    >
-                        Content & Coverage
-                    </Link>
-                </nav>
-                <button onClick={handleLogout} className="btn btn-ghost">
-                    Sign out
-                </button>
-            </header>
+      {children}
 
-            {children}
-
-            <style jsx>{`
+      <style jsx>{`
         .admin-layout {
           min-height: 100vh;
           background: var(--color-background);
@@ -117,6 +117,6 @@ export default function AdminLayoutClient({ children }: AdminLayoutClientProps) 
           background: rgba(255, 255, 255, 0.2);
         }
       `}</style>
-        </div>
-    )
+    </div>
+  )
 }

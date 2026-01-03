@@ -4,69 +4,69 @@ import Link from 'next/link'
 import { useState } from 'react'
 
 export default function Header() {
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-    return (
-        <header className="header">
-            <div className="container">
-                <div className="header-inner">
-                    <Link href="/" className="logo">
-                        <span className="logo-text">Plainly</span>
-                        <span className="logo-accent">AI</span>
-                    </Link>
+  return (
+    <header className="header">
+      <div className="container">
+        <div className="header-inner">
+          <Link href="/" className="logo">
+            <span className="logo-text">Enablr</span>
+            <span className="logo-accent">AI</span>
+          </Link>
 
-                    <nav className="nav-desktop">
-                        <Link href="/readiness-check" className="nav-link">
-                            AI Readiness Check
-                        </Link>
-                        <Link href="#book-call" className="btn btn-primary">
-                            Book a Call
-                        </Link>
-                    </nav>
+          <nav className="nav-desktop">
+            <Link href="/readiness-check" className="nav-link">
+              AI Readiness Check
+            </Link>
+            <Link href="#book-call" className="btn btn-primary">
+              Book a Call
+            </Link>
+          </nav>
 
-                    <button
-                        className="mobile-menu-button"
-                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        aria-label="Toggle menu"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth={1.5}
-                            stroke="currentColor"
-                            className="menu-icon"
-                        >
-                            {mobileMenuOpen ? (
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                            ) : (
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                            )}
-                        </svg>
-                    </button>
-                </div>
+          <button
+            className="mobile-menu-button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="menu-icon"
+            >
+              {mobileMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              )}
+            </svg>
+          </button>
+        </div>
 
-                {mobileMenuOpen && (
-                    <nav className="nav-mobile">
-                        <Link
-                            href="/readiness-check"
-                            className="nav-link-mobile"
-                            onClick={() => setMobileMenuOpen(false)}
-                        >
-                            AI Readiness Check
-                        </Link>
-                        <Link
-                            href="#book-call"
-                            className="btn btn-primary"
-                            onClick={() => setMobileMenuOpen(false)}
-                        >
-                            Book a Call
-                        </Link>
-                    </nav>
-                )}
-            </div>
+        {mobileMenuOpen && (
+          <nav className="nav-mobile">
+            <Link
+              href="/readiness-check"
+              className="nav-link-mobile"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              AI Readiness Check
+            </Link>
+            <Link
+              href="#book-call"
+              className="btn btn-primary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Book a Call
+            </Link>
+          </nav>
+        )}
+      </div>
 
-            <style jsx>{`
+      <style jsx>{`
         .header {
           position: sticky;
           top: 0;
@@ -164,6 +164,6 @@ export default function Header() {
           }
         }
       `}</style>
-        </header>
-    )
+    </header>
+  )
 }
