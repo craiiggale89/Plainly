@@ -54,8 +54,8 @@ export default function Footer() {
         .footer-logo {
           display: flex;
           align-items: center;
-          gap: 2px;
-          font-size: 1.25rem;
+          gap: 0;
+          font-size: 1.75rem;
           font-weight: 600;
           text-decoration: none;
           margin-bottom: 8px;
@@ -74,10 +74,10 @@ export default function Footer() {
         .logo-suffix::after {
           content: '';
           position: absolute;
-          left: 0;
-          bottom: 2px;
-          width: 100%;
-          height: 3px;
+          left: -5%;
+          bottom: -5px;
+          width: 110%;
+          height: 4px;
           background-color: var(--color-accent-light);
           border-radius: 2px;
         }

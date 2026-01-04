@@ -87,7 +87,7 @@ export default function Header() {
           display: flex;
           align-items: center;
           gap: 0;
-          font-size: 2.6rem;
+          font-size: 3rem;
           font-weight: 600;
           text-decoration: none;
         }
@@ -105,12 +105,12 @@ export default function Header() {
         .logo-suffix::after {
           content: '';
           position: absolute;
-          left: 0;
-          bottom: 3px;
-          width: 100%;
-          height: 5px;
+          left: -5%;
+          bottom: -8px;
+          width: 110%;
+          height: 6px;
           background-color: var(--color-accent);
-          border-radius: 2px;
+          border-radius: 3px;
           opacity: 0.9;
         }
 
