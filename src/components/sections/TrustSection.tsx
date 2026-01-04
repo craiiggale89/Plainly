@@ -25,14 +25,8 @@ export default function TrustSection() {
             ))}
           </ul>
 
-          <blockquote className="testimonial">
-            <p className="testimonial-quote">
-              &ldquo;Quote from early client about clarity, practical results, and straightforward service.&rdquo;
-            </p>
-            <footer className="testimonial-author">
-              Name, Company
-            </footer>
-          </blockquote>
+
+
         </div>
       </div>
 

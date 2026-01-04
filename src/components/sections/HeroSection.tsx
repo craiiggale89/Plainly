@@ -24,6 +24,8 @@ export default function HeroSection() {
             </Link>
           </div>
 
+          <div className="hero-divider" />
+
           <p className="hero-location">
             Based in Birmingham, supporting businesses across the UK
           </p>
@@ -67,8 +69,17 @@ export default function HeroSection() {
           flex-wrap: wrap;
         }
 
+        .hero-divider {
+          width: 48px;
+          height: 3px;
+          background-color: var(--color-accent);
+          border-radius: 2px;
+          margin: 32px auto 24px;
+          opacity: 0.5;
+        }
+
         .hero-location {
-          margin-top: 24px;
+          margin-top: 0;
           font-size: 0.9375rem;
           color: var(--color-text-muted);
           opacity: 0.8;

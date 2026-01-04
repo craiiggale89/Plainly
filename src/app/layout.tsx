@@ -8,14 +8,23 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Enablr: Practical AI for Small Businesses",
+  title: {
+    default: "Enablr: Practical AI for Small Businesses",
+    template: "%s | Enablr",
+  },
   description: "Enablr helps small UK businesses use AI tools confidently, from team training on ChatGPT and Copilot, to custom automations that actually work.",
+  applicationName: "Enablr",
   keywords: "AI training, small business AI, ChatGPT training, Microsoft Copilot, AI automation, Birmingham UK",
   openGraph: {
     title: "Enablr: Practical AI for Small Businesses",
     description: "Helping small UK businesses use AI tools confidently, from team training to custom automations.",
+    siteName: "Enablr",
     type: "website",
     locale: "en_GB",
+  },
+  appleWebApp: {
+    title: "Enablr",
+    statusBarStyle: "default",
   },
 };
 

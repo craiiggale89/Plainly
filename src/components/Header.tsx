@@ -86,8 +86,8 @@ export default function Header() {
         .logo {
           display: flex;
           align-items: center;
-          gap: 2px;
-          font-size: 1.5rem;
+          gap: 0;
+          font-size: 2.6rem;
           font-weight: 600;
           text-decoration: none;
         }
@@ -108,7 +108,7 @@ export default function Header() {
           left: 0;
           bottom: 3px;
           width: 100%;
-          height: 4px;
+          height: 5px;
           background-color: var(--color-accent);
           border-radius: 2px;
           opacity: 0.9;
