@@ -49,6 +49,8 @@ export async function PUT(request: Request, { params }: Props) {
                 }),
                 ...(data.review_notes !== undefined && { reviewNotes: data.review_notes }),
                 ...(data.notes !== undefined && { notes: data.notes }),
+                ...(data.ai_summary !== undefined && { aiSummary: data.ai_summary }),
+                ...(data.suggested_keywords !== undefined && { suggestedKeywords: data.suggested_keywords }),
                 ...(data.page_views !== undefined && { pageViews: data.page_views }),
                 ...(data.cta_clicks !== undefined && { ctaClicks: data.cta_clicks }),
             }

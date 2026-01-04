@@ -7,7 +7,7 @@ export default function ServicesSection() {
     <section className="services section section-alt">
       <div className="container">
         <div className="section-intro">
-          <p className="intro-text">We help you build your own capabilities, not a dependency on ours.</p>
+          <p className="intro-text">How we typically help small teams</p>
         </div>
         <div className="services-grid">
           {/* Service A: AI Readiness & Team Upskilling */}
@@ -133,6 +133,23 @@ export default function ServicesSection() {
         .service-title {
           margin-bottom: 16px;
           font-size: 1.5rem;
+        }
+
+        .service-label {
+          display: block;
+          font-size: 0.75rem;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          color: var(--color-text-muted);
+          margin-bottom: 12px;
+          font-weight: 600;
+        }
+
+        .services-footer {
+          text-align: center;
+          margin-top: 32px;
+          color: var(--color-text-muted);
+          font-size: 0.9375rem;
         }
 
         .service-description {

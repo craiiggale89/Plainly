@@ -11,8 +11,8 @@ export default function Footer() {
         <div className="footer-inner">
           <div className="footer-left">
             <Link href="/" className="footer-logo">
-              <span className="logo-text">Enab</span>
-              <span className="logo-suffix">lr</span>
+              <span className="logo-text">Ena</span>
+              <span className="logo-suffix">blr</span>
             </Link>
             <p className="footer-tagline">
               Practical AI for small businesses
@@ -55,8 +55,9 @@ export default function Footer() {
           display: flex;
           align-items: center;
           gap: 0;
-          font-size: 1.75rem;
-          font-weight: 600;
+          font-size: 2.5rem;
+          font-weight: 900;
+          letter-spacing: -0.03em;
           text-decoration: none;
           margin-bottom: 8px;
         }
@@ -74,9 +75,9 @@ export default function Footer() {
         .logo-suffix::after {
           content: '';
           position: absolute;
-          left: -5%;
-          bottom: -5px;
-          width: 110%;
+          left: 0;
+          bottom: -4px;
+          width: 100%;
           height: 4px;
           background-color: var(--color-accent-light);
           border-radius: 2px;

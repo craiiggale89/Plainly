@@ -1,18 +1,22 @@
 import { NextResponse } from 'next/server'
 import { headers } from 'next/headers'
-import OpenAI from 'openai'
+import { GoogleGenerativeAI } from '@google/generative-ai'
 import prisma from '@/lib/prisma'
 
 export const dynamic = 'force-dynamic'
 
-// Lazy-load OpenAI client
-let openai: OpenAI | null = null
+// Lazy-load Gemini client
+let genAI: GoogleGenerativeAI | null = null
 
-function getOpenAI() {
-    if (!openai) {
-        openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+function getGemini() {
+    if (!genAI) {
+        const apiKey = process.env.GEMINI_API_KEY
+        if (!apiKey) {
+            throw new Error('GEMINI_API_KEY is not set')
+        }
+        genAI = new GoogleGenerativeAI(apiKey)
     }
-    return openai
+    return genAI
 }
 
 interface Props {
@@ -56,8 +60,6 @@ export async function POST(request: Request, { params }: Props) {
             return NextResponse.json({ error: 'Page not found' }, { status: 404 })
         }
 
-        // For now, we'll use the primary topic and title as content
-        // In a full implementation, you might fetch the actual page HTML
         const contentToAnalyse = `
 Page Title: ${page.title}
 URL: ${page.url}
@@ -65,22 +67,18 @@ Primary Topic: ${page.primaryTopic || 'Not specified'}
 Notes: ${page.notes || 'None'}
         `.trim()
 
-        const client = getOpenAI()
+        const client = getGemini()
+        const model = client.getGenerativeModel({ model: "gemini-1.5-pro" })
 
-        const completion = await client.chat.completions.create({
-            model: 'gpt-4o-mini',
-            messages: [
-                { role: 'system', content: ANALYSIS_PROMPT },
-                { role: 'user', content: `Analyse this page:\n\n${contentToAnalyse}` }
-            ],
-            temperature: 0.3,
-            max_tokens: 1000,
-        })
+        const result = await model.generateContent([
+            ANALYSIS_PROMPT,
+            `Analyse this page:\n\n${contentToAnalyse}`
+        ])
 
-        const responseText = completion.choices[0]?.message?.content
+        const responseText = result.response.text()
 
         if (!responseText) {
-            throw new Error('No response from OpenAI')
+            throw new Error('No response from Gemini')
         }
 
         // Parse the JSON response
@@ -94,7 +92,7 @@ Notes: ${page.notes || 'None'}
                 throw new Error('No JSON found in response')
             }
         } catch (parseError) {
-            console.error('Failed to parse OpenAI response:', responseText)
+            console.error('Failed to parse Gemini response:', responseText)
             throw new Error('Failed to parse AI analysis')
         }
 

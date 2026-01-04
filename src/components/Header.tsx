@@ -11,8 +11,8 @@ export default function Header() {
       <div className="container">
         <div className="header-inner">
           <Link href="/" className="logo">
-            <span className="logo-text">Enab</span>
-            <span className="logo-suffix">lr</span>
+            <span className="logo-text">Ena</span>
+            <span className="logo-suffix">blr</span>
           </Link>
 
           <nav className="nav-desktop">
@@ -80,15 +80,16 @@ export default function Header() {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          height: 72px;
+          height: 90px;
         }
 
         .logo {
           display: flex;
           align-items: center;
           gap: 0;
-          font-size: 3rem;
-          font-weight: 600;
+          font-size: 3.5rem;
+          font-weight: 900;
+          letter-spacing: -0.03em;
           text-decoration: none;
         }
 
@@ -105,10 +106,10 @@ export default function Header() {
         .logo-suffix::after {
           content: '';
           position: absolute;
-          left: -5%;
-          bottom: -8px;
-          width: 110%;
-          height: 6px;
+          left: 0;
+          bottom: -4px;
+          width: 100%;
+          height: 5px;
           background-color: var(--color-accent);
           border-radius: 3px;
           opacity: 0.9;

@@ -16,10 +16,10 @@ export default function HeroSection() {
           </p>
 
           <div className="hero-ctas">
-            <Link href="/readiness-check" className="btn btn-primary btn-lg">
-              Start your free AI readiness check
+            <Link href="/readiness-check" className="btn btn-primary btn-lg hero-btn">
+              Start your 4-minute AI readiness check
             </Link>
-            <Link href="#book-call" className="btn btn-secondary btn-lg">
+            <Link href="#book-call" className="btn btn-secondary btn-lg hero-btn">
               Book a discovery call
             </Link>
           </div>
@@ -63,10 +63,19 @@ export default function HeroSection() {
         }
 
         .hero-ctas {
-          display: flex;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
           gap: 16px;
-          justify-content: center;
-          flex-wrap: wrap;
+          width: 100%;
+          max-width: 800px; /* Increased to allow buttons to fit side-by-side */
+          margin: 0 auto;
+        }
+
+        .hero-btn {
+          width: 100%;
+          white-space: nowrap;
+          padding-left: 24px;
+          padding-right: 24px;
         }
 
         .hero-divider {
@@ -99,8 +108,12 @@ export default function HeroSection() {
           }
 
           .hero-ctas {
-            flex-direction: column;
-            align-items: stretch;
+            grid-template-columns: 1fr;
+          }
+
+          .hero-btn {
+             width: 100%;
+             white-space: normal; /* Allow wrapping on mobile if needed */
           }
         }
       `}</style>

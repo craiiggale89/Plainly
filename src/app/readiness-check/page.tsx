@@ -69,23 +69,47 @@ const questions: Question[] = [
     },
 ]
 
-function getReadinessLevel(score: number): { label: string; description: string; color: string } {
+function getReadinessLevel(score: number): {
+    label: string
+    meaning: string
+    nextSteps: string[]
+    bridge: string
+    color: string
+} {
     if (score >= 80) {
         return {
             label: 'AI Ready',
-            description: 'You\'re in a great position to start using AI more effectively. Your team has good foundations, and there are clear opportunities to save time and improve workflows.',
+            meaning: 'Your foundations are solid, and you\'re ready to move from experimenting to integrating AI into daily workflows.',
+            nextSteps: [
+                'Audit where you currently use AI successfully',
+                'Create a simple "safe use" policy for the team',
+                'Identify one repetitive task to fully automate'
+            ],
+            bridge: 'Teams at this stage often partner with Enablr to build those custom automations safely.',
             color: '#2D6A4F',
         }
     } else if (score >= 50) {
         return {
             label: 'Getting Ready',
-            description: 'You\'re on the right track. With some focused training and clear guidelines, your team could be using AI confidently within weeks.',
+            meaning: 'You have the right mindset, but your team needs more structure to use AI consistently and safely.',
+            nextSteps: [
+                'Identify the top 3 AI tools relevant to your work',
+                'Run a "lunch and learn" to share what\'s working',
+                'Set clear boundaries on what data not to share'
+            ],
+            bridge: 'This is where Enablr typically steps in to provide structured team training.',
             color: '#3D8B8B',
         }
     } else {
         return {
             label: 'Early Stage',
-            description: 'No problem, everyone starts somewhere. A structured introduction to AI tools could help you and your team understand what\'s possible without the overwhelm.',
+            meaning: 'You are in the exploration phase, perfect for building good habits before things get messy.',
+            nextSteps: [
+                'Appoint one person as your designated "AI explorer"',
+                'Focus on solving one specific pain point first',
+                'Start with free tools before committing to subscriptions'
+            ],
+            bridge: 'Enablr often helps businesses at this stage simply figure out where to start.',
             color: '#D4A574',
         }
     }
@@ -225,8 +249,21 @@ export default function ReadinessCheckPage() {
                                     </h2>
                                 </div>
 
-                                <p className="score-description">
-                                    {readinessLevel.description}
+                                <p className="score-meaning">
+                                    {readinessLevel.meaning}
+                                </p>
+
+                                <div className="results-section">
+                                    <h3>Next steps to consider</h3>
+                                    <ul className="steps-list">
+                                        {readinessLevel.nextSteps.map((step, index) => (
+                                            <li key={index}>{step}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+
+                                <p className="score-bridge">
+                                    {readinessLevel.bridge}
                                 </p>
 
                                 <div className="capture-form">
@@ -308,7 +345,7 @@ export default function ReadinessCheckPage() {
                         )}
                     </div>
                 </div>
-            </main>
+            </main >
 
             <Footer />
 
@@ -432,11 +469,58 @@ export default function ReadinessCheckPage() {
         }
 
         .score-description {
-          text-align: center;
-          color: var(--color-text-muted);
-          line-height: 1.6;
-          margin-bottom: 40px;
-          padding: 0 20px;
+            text-align: center;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+
+        .score-meaning {
+            text-align: center;
+            font-size: 1.125rem;
+            line-height: 1.6;
+            margin-bottom: 32px;
+            padding: 0 16px;
+        }
+
+        .results-section {
+            background: var(--color-background);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            text-align: left;
+        }
+
+        .results-section h3 {
+            font-size: 1rem;
+            color: var(--color-primary);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .steps-list {
+            margin: 0;
+            padding-left: 20px;
+            color: var(--color-text);
+        }
+
+        .steps-list li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .steps-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .score-bridge {
+            text-align: center;
+            font-size: 0.9375rem;
+            color: var(--color-text-muted);
+            font-style: italic;
+            margin-bottom: 40px;
+            padding: 0 16px;
         }
 
         .capture-form h3 {
@@ -498,6 +582,6 @@ export default function ReadinessCheckPage() {
           }
         }
       `}</style>
-        </div>
+        </div >
     )
 }

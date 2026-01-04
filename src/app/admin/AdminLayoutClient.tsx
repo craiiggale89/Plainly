@@ -46,6 +46,12 @@ export default function AdminLayoutClient({ children }: AdminLayoutClientProps) 
           >
             Content & Coverage
           </Link>
+          <Link
+            href="/admin/analytics"
+            className={`nav-link ${isActive('/admin/analytics') ? 'active' : ''}`}
+          >
+            Analytics
+          </Link>
         </nav>
         <button onClick={handleLogout} className="btn btn-ghost">
           Sign out
