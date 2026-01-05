@@ -17,10 +17,10 @@ export default function Header() {
 
           <nav className="nav-desktop">
             <Link href="/readiness-check" className="nav-link">
-              AI Readiness Check
+              Start your 4-minute AI readiness check
             </Link>
             <Link href="#book-call" className="btn btn-primary">
-              Book a Call
+              Book a call
             </Link>
           </nav>
 
@@ -53,14 +53,14 @@ export default function Header() {
               className="nav-link-mobile"
               onClick={() => setMobileMenuOpen(false)}
             >
-              AI Readiness Check
+              Start your 4-minute AI readiness check
             </Link>
             <Link
               href="#book-call"
               className="btn btn-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Book a Call
+              Book a call
             </Link>
           </nav>
         )}

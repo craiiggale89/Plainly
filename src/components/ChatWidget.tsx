@@ -64,7 +64,7 @@ export default function ChatWidget() {
         ...prev,
         {
           role: 'assistant',
-          content: "I'm sorry, I had trouble processing that. Could you try again, or book a discovery call to chat with someone from the team?"
+          content: "I'm sorry, I had trouble processing that. Could you try again, or book a call to chat with someone from the team?"
         },
       ])
     } finally {

@@ -35,16 +35,28 @@ export default function AdminLayoutClient({ children }: AdminLayoutClientProps) 
         </div>
         <nav className="admin-nav">
           <Link
-            href="/admin"
-            className={`nav-link ${isActive('/admin') && !pathname?.startsWith('/admin/content') ? 'active' : ''}`}
+            href="/admin/leads"
+            className={`nav-item ${isActive('/admin/leads') && !isActive('/admin/leads/discovery') ? 'active' : ''}`}
           >
             Leads
+          </Link>
+          <Link
+            href="/admin/leads/discovery"
+            className={`nav-item ${isActive('/admin/leads/discovery') ? 'active' : ''}`}
+          >
+            Discovery Agent ✨
           </Link>
           <Link
             href="/admin/content"
             className={`nav-link ${isActive('/admin/content') ? 'active' : ''}`}
           >
             Content & Coverage
+          </Link>
+          <Link
+            href="/admin/seo"
+            className={`nav-item ${isActive('/admin/seo') ? 'active' : ''}`}
+          >
+            SEO Agent ✨
           </Link>
           <Link
             href="/admin/analytics"

@@ -43,7 +43,7 @@ export default function ServicesSection() {
             </p>
 
             <Link href="/readiness-check" className="btn btn-ghost">
-              Take the readiness check →
+              Start your 4-minute AI readiness check →
             </Link>
           </div>
 

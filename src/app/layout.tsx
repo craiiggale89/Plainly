@@ -10,45 +10,64 @@ const inter = Inter({
 import prisma from "@/lib/prisma";
 
 export async function generateMetadata(): Promise<Metadata> {
-  // auto-seed homepage if missing
-  const homepage = await prisma.contentPage.upsert({
-    where: { url: 'https://enablr.digital/' },
-    update: {
-      // track views on load? possibly, but better in analytics middleware or separate event
-      // here we just ensure it exists for SEO editing
-    },
-    create: {
-      title: "Enablr: Practical AI for Small Businesses",
-      url: "https://enablr.digital/",
-      primaryTopic: "AI training",
-      status: "published",
-      aiSummary: "Enablr helps small UK businesses use AI tools confidently, from team training on ChatGPT and Copilot, to custom automations that actually work.",
-      suggestedKeywords: ["AI training", "small business AI", "ChatGPT training", "Microsoft Copilot", "AI automation", "Birmingham UK"],
-      notes: "Auto-generated homepage record"
-    }
-  });
-
-  return {
-    title: {
-      default: homepage.title || "Enablr: Practical AI for Small Businesses",
-      template: "%s | Enablr",
-    },
-    description: homepage.aiSummary || "Enablr helps small UK businesses use AI tools confidently, from team training on ChatGPT and Copilot, to custom automations that actually work.",
-    applicationName: "Enablr",
-    keywords: homepage.suggestedKeywords ? (homepage.suggestedKeywords as string[]).join(", ") : "AI training, small business AI, ChatGPT training, Microsoft Copilot, AI automation, Birmingham UK",
-    openGraph: {
-      title: homepage.title || "Enablr: Practical AI for Small Businesses",
-      description: homepage.aiSummary || "Helping small UK businesses use AI tools confidently, from team training to custom automations.",
-      siteName: "Enablr",
-      type: "website",
-      locale: "en_GB",
-    },
-    appleWebApp: {
-      title: "Enablr",
-      statusBarStyle: "default",
-    },
+  // Default metadata fallback
+  const defaultMeta = {
+    title: "Enablr: Practical AI for Small Businesses",
+    description: "Enablr helps small UK businesses use AI tools confidently, from team training on ChatGPT and Copilot, to custom automations that actually work.",
+    keywords: "AI training, small business AI, ChatGPT training, Microsoft Copilot, AI automation, Birmingham UK"
   };
+
+  try {
+    // auto-seed homepage if missing
+    const homepage = await prisma.contentPage.upsert({
+      where: { url: 'https://enablr.digital/' },
+      update: {},
+      create: {
+        title: defaultMeta.title,
+        url: "https://enablr.digital/",
+        primaryTopic: "AI training",
+        status: "published",
+        aiSummary: defaultMeta.description,
+        suggestedKeywords: defaultMeta.keywords.split(", "),
+        notes: "Auto-generated homepage record"
+      }
+    });
+
+    return {
+      title: {
+        default: homepage.title || defaultMeta.title,
+        template: "%s | Enablr",
+      },
+      description: homepage.aiSummary || defaultMeta.description,
+      applicationName: "Enablr",
+      keywords: homepage.suggestedKeywords ? (homepage.suggestedKeywords as string[]).join(", ") : defaultMeta.keywords,
+      openGraph: {
+        title: homepage.title || defaultMeta.title,
+        description: homepage.aiSummary || defaultMeta.description,
+        siteName: "Enablr",
+        type: "website",
+        locale: "en_GB",
+      },
+      appleWebApp: {
+        title: "Enablr",
+        statusBarStyle: "default",
+      },
+    };
+  } catch (error) {
+    // Database unavailable - return static fallback
+    console.error('Metadata generation failed, using fallback:', error);
+    return {
+      title: {
+        default: defaultMeta.title,
+        template: "%s | Enablr",
+      },
+      description: defaultMeta.description,
+      applicationName: "Enablr",
+      keywords: defaultMeta.keywords,
+    };
+  }
 }
+
 
 export default function RootLayout({
   children,

@@ -23,28 +23,51 @@ interface Props {
     params: Promise<{ id: string }>
 }
 
-const ANALYSIS_PROMPT = `You are an SEO and content analyst helping a UK-based AI consultancy (Enablr, based in Birmingham, West Midlands) understand their web pages.
+const ANALYSIS_PROMPT = `You are an expert SEO auditor helping "Enablr", a UK-based AI consultancy in Birmingham, West Midlands, optimize their website pages.
 
-Analyse the following page content and provide:
+Perform a comprehensive SEO audit of the following page and provide actionable recommendations.
 
-1. **Summary** (3-5 sentences): What is this page about? Who is it for? What action does it encourage?
+**SCORING CRITERIA:**
+- Overall SEO Score (0-100): Based on technical SEO, content quality, and optimization level
+- Local SEO Score (0-100): How well the page targets Birmingham/West Midlands audience
+- Content Quality Score (0-100): Clarity, depth, and conversion potential
 
-2. **Keywords** (5-10 items): Extract relevant SEO keywords and topics from this content. Return as a JSON array of strings.
+**AUDIT CHECKLIST:**
+1. Title tag optimization (length, keywords, uniqueness)
+2. Meta description quality
+3. Header structure (H1, H2s)
+4. Keyword density and placement
+5. Internal/external linking opportunities
+6. Local SEO signals (location mentions, local schema potential)
+7. Call-to-action clarity
+8. Mobile-friendliness indicators
+9. Content length and depth
 
-3. **Location Mentions**: Does this page mention "Birmingham" or "West Midlands"? Return as JSON: { "birmingham": true/false, "west_midlands": true/false }
-
-4. **Suggested Local Phrases** (3 items): If the page doesn't mention the local area, suggest 3 natural ways to add Birmingham/West Midlands references. Return as a JSON array of strings. If location is already well-covered, return an empty array.
-
-5. **Suggested Review Date**: Based on the content type (service page, blog, landing page, etc.), suggest when this should next be reviewed. Return as ISO date string (e.g., "2025-03-15").
-
-Return your response as valid JSON with this exact structure:
+**Return your response as valid JSON with this exact structure:**
 {
-  "summary": "string",
-  "keywords": ["string"],
-  "location_mentions": { "birmingham": boolean, "west_midlands": boolean },
-  "suggested_local_phrases": ["string"],
+  "overall_seo_score": 75,
+  "local_seo_score": 60,
+  "content_quality_score": 80,
+  "summary": "Brief 2-sentence description of what this page does",
+  "strengths": ["strength 1", "strength 2", "strength 3"],
+  "critical_issues": ["issues that must be fixed"],
+  "recommendations": [
+    { "priority": "high", "category": "title", "action": "specific action to take" }
+  ],
+  "keywords": {
+    "primary": "main target keyword",
+    "secondary": ["supporting keywords"],
+    "missing": ["keywords you should add"]
+  },
+  "local_seo": {
+    "birmingham_mentions": 0,
+    "west_midlands_mentions": 0,
+    "suggested_local_phrases": ["natural ways to add local references"]
+  },
+  "technical_notes": ["any technical SEO observations"],
   "suggested_review_date": "YYYY-MM-DD"
 }`
+
 
 export async function POST(request: Request, { params }: Props) {
     await headers()
@@ -68,7 +91,7 @@ Notes: ${page.notes || 'None'}
         `.trim()
 
         const client = getGemini()
-        const model = client.getGenerativeModel({ model: "gemini-1.5-pro" })
+        const model = client.getGenerativeModel({ model: "gemini-2.0-flash" })
 
         const result = await model.generateContent([
             ANALYSIS_PROMPT,
@@ -96,16 +119,25 @@ Notes: ${page.notes || 'None'}
             throw new Error('Failed to parse AI analysis')
         }
 
-        // Update the content page with AI analysis
+        // Update the content page with AI analysis (adapted for new structure)
         const updatedPage = await prisma.contentPage.update({
             where: { id },
             data: {
-                aiSummary: analysis.summary,
+                aiSummary: JSON.stringify({
+                    summary: analysis.summary,
+                    overall_score: analysis.overall_seo_score,
+                    local_score: analysis.local_seo_score,
+                    content_score: analysis.content_quality_score,
+                    strengths: analysis.strengths,
+                    critical_issues: analysis.critical_issues,
+                    recommendations: analysis.recommendations,
+                    technical_notes: analysis.technical_notes
+                }),
                 aiGeneratedAt: new Date(),
-                suggestedKeywords: analysis.keywords,
-                hasBirminghamMention: analysis.location_mentions?.birmingham || false,
-                hasWestMidlandsMention: analysis.location_mentions?.west_midlands || false,
-                suggestedLocalPhrases: analysis.suggested_local_phrases,
+                suggestedKeywords: analysis.keywords?.secondary || [],
+                hasBirminghamMention: (analysis.local_seo?.birmingham_mentions || 0) > 0,
+                hasWestMidlandsMention: (analysis.local_seo?.west_midlands_mentions || 0) > 0,
+                suggestedLocalPhrases: analysis.local_seo?.suggested_local_phrases || [],
                 suggestedReviewDate: analysis.suggested_review_date
                     ? new Date(analysis.suggested_review_date)
                     : null,
@@ -117,6 +149,7 @@ Notes: ${page.notes || 'None'}
             analysis,
             page: updatedPage
         })
+
     } catch (error) {
         console.error('Content analysis error:', error)
         return NextResponse.json(

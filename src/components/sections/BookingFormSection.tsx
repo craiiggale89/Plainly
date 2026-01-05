@@ -49,7 +49,7 @@ export default function BookingFormSection() {
                         <div className="success-icon">✓</div>
                         <h2 className="title">Request received</h2>
                         <p className="text">
-                            Thanks for reaching out! We&apos;ll be in touch within 24 hours to schedule your discovery call.
+                            Thanks for reaching out! We&apos;ll be in touch within 24 hours to schedule your call.
                         </p>
                     </div>
                 </div>
@@ -91,7 +91,7 @@ export default function BookingFormSection() {
             <div className="container">
                 <div className="booking-grid">
                     <div className="booking-info">
-                        <h2 className="section-title">Book a discovery call</h2>
+                        <h2 className="section-title">Book a call</h2>
                         <p className="section-subtitle">
                             Ready to move forward? Tell us a bit about your business and we&apos;ll schedule a time to chat.
                         </p>
@@ -189,7 +189,7 @@ export default function BookingFormSection() {
                                 className="btn btn-primary btn-lg submit-btn"
                                 disabled={isSubmitting}
                             >
-                                {isSubmitting ? 'Sending...' : 'Request a discovery call'}
+                                {isSubmitting ? 'Sending...' : 'Book a call'}
                             </button>
                         </form>
                     </div>

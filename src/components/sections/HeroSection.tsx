@@ -20,7 +20,7 @@ export default function HeroSection() {
               Start your 4-minute AI readiness check
             </Link>
             <Link href="#book-call" className="btn btn-secondary btn-lg hero-btn">
-              Book a discovery call
+              Book a call
             </Link>
           </div>
 

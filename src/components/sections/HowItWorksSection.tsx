@@ -44,7 +44,7 @@ export default function HowItWorksSection() {
 
         <div className="section-cta">
           <Link href="#book-call" className="btn btn-primary btn-lg">
-            Start with a discovery call
+            Book a call
           </Link>
         </div>
       </div>

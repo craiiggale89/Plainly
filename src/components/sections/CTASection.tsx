@@ -21,12 +21,12 @@ export default function CTASection() {
 
           <div className="cta-buttons">
             <Link href="/readiness-check" className="btn btn-primary btn-lg">
-              Start your free AI readiness check
+              Start your 4-minute AI readiness check
             </Link>
           </div>
 
           <p className="cta-secondary">
-            It&apos;s completely free, and gives you a clear roadmap whether you choose to work with us or not.
+            No prep. No sales pitch.
           </p>
 
           <p className="cta-location">

@@ -335,7 +335,7 @@ export default function ReadinessCheckPage() {
                                         href="/#book-call"
                                         className="btn btn-primary"
                                     >
-                                        Book a discovery call
+                                        Book a call
                                     </Link>
                                     <Link href="/" className="btn btn-secondary">
                                         Return to homepage

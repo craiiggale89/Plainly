@@ -101,3 +101,22 @@ model ContentPage {
   @@index([lastReviewed])
   @@map("content_pages")
 }
+
+model LeadCandidate {
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  businessName  String   @map("business_name")
+  website       String?
+  location      String?
+  industry      String?
+  contactEmail  String?  @map("contact_email")
+  fitScore      Int      @default(0) @map("fit_score")
+  fitNotes      String?  @map("fit_notes")
+  source        String?
+  status        String   @default("new") // new, reviewed, contacted, ignored
+  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt     DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@map("lead_candidates")
+  @@index([status])
+  @@index([fitScore(sort: Desc)])
+}
