@@ -31,9 +31,19 @@ export default function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <Link href="/privacy" className="footer-link">
-            Privacy Policy
-          </Link>
+          <div className="footer-legal-links">
+            <Link href="/privacy" className="footer-link">
+              Privacy
+            </Link>
+            <span className="footer-divider">·</span>
+            <Link href="/terms" className="footer-link">
+              Terms
+            </Link>
+            <span className="footer-divider">·</span>
+            <Link href="/cookies" className="footer-link">
+              Cookies
+            </Link>
+          </div>
         </div>
       </div>
 
@@ -127,6 +137,17 @@ export default function Footer() {
         .footer-bottom {
           padding-top: 24px;
           text-align: center;
+        }
+
+        .footer-legal-links {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .footer-divider {
+          color: rgba(255, 255, 255, 0.3);
         }
 
         .footer-link {
