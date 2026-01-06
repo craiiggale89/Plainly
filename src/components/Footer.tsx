@@ -21,6 +21,9 @@ export default function Footer() {
 
           <div className="footer-right">
             <p className="footer-location">Enablr | Birmingham, UK</p>
+            <p className="footer-contact">
+              Contact: <a href="mailto:contact@enablr.digital" className="footer-email">contact@enablr.digital</a>
+            </p>
             <p className="footer-copyright">
               © {currentYear} Enablr
             </p>
@@ -97,6 +100,22 @@ export default function Footer() {
           color: rgba(255, 255, 255, 0.7);
           font-size: 0.875rem;
           margin: 0 0 4px 0;
+        }
+
+        .footer-contact {
+          color: rgba(255, 255, 255, 0.6);
+          font-size: 0.875rem;
+          margin: 0 0 4px 0;
+        }
+
+        .footer-email {
+          color: rgba(255, 255, 255, 0.8);
+          text-decoration: none;
+          transition: color var(--transition-fast);
+        }
+
+        .footer-email:hover {
+          color: white;
         }
 
         .footer-copyright {

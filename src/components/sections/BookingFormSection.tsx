@@ -119,6 +119,10 @@ export default function BookingFormSection() {
                                 </div>
                             </li>
                         </ul>
+
+                        <p className="email-alternative">
+                            Prefer email? <a href="mailto:contact@enablr.digital">contact@enablr.digital</a>
+                        </p>
                     </div>
 
                     <div className="booking-form-container">
@@ -246,6 +250,21 @@ export default function BookingFormSection() {
                 .info-list span {
                     color: var(--color-text-muted);
                     font-size: 0.9375rem;
+                }
+
+                .email-alternative {
+                    margin-top: 24px;
+                    font-size: 0.875rem;
+                    color: var(--color-text-muted);
+                }
+
+                .email-alternative a {
+                    color: var(--color-accent);
+                    text-decoration: none;
+                }
+
+                .email-alternative a:hover {
+                    text-decoration: underline;
                 }
 
                 .booking-form-container {
