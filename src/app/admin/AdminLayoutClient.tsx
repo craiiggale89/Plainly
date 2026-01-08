@@ -59,6 +59,12 @@ export default function AdminLayoutClient({ children }: AdminLayoutClientProps) 
             SEO Agent ✨
           </Link>
           <Link
+            href="/admin/chatbot"
+            className={`nav-link ${isActive('/admin/chatbot') ? 'active' : ''}`}
+          >
+            Chatbot
+          </Link>
+          <Link
             href="/admin/analytics"
             className={`nav-link ${isActive('/admin/analytics') ? 'active' : ''}`}
           >

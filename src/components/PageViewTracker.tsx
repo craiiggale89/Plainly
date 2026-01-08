@@ -10,6 +10,16 @@ export default function PageViewTracker() {
         // Don't track admin pages
         if (pathname.startsWith('/admin')) return
 
+        // Don't track localhost or Vercel preview deploys
+        const hostname = window.location.hostname
+        if (
+            hostname === 'localhost' ||
+            hostname === '127.0.0.1' ||
+            hostname.includes('.vercel.app')
+        ) {
+            return
+        }
+
         // Track the page view
         const trackView = async () => {
             try {
